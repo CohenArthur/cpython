@@ -2,5 +2,8 @@
 
 cd $1
 
-./configure LDFLAGS="-static" --disable-shared
-make LDFLAGS="-static" LINKFORSHARED=" " -j$(nproc)
+if [ ! -f "Makefile" ]; then
+    ./configure LDFLAGS="-static" --disable-shared
+    make LDFLAGS="-static" LINKFORSHARED=" " -j$(nproc)
+    cp python static_python
+fi
